@@ -14,7 +14,6 @@ return require('packer').startup(function(use)
   }
 
   use { "catppuccin/nvim", as = "catppuccin" }
-
   use "EdenEast/nightfox.nvim"
 
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
@@ -47,5 +46,45 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'}, -- Optional
 	  }
   }
+
+  -- use {
+  --     'nvim-tree/nvim-tree.lua',
+  --     requires = {
+  --         'nvim-tree/nvim-web-devicons', -- optional, for file icons
+  --     },
+  --     tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  -- }
+
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
+
+  use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = function()
+          require('lualine').setup()
+      end
+  }
+
+  use {
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+          require('colorizer').setup()
+      end
+  }
+
+  -- using packer.nvim
+  -- use {
+  --     'akinsho/bufferline.nvim',
+  --     tag = "v3.*",
+  --     requires = 'nvim-tree/nvim-web-devicons',
+  --     config = function()
+  --         require("bufferline").setup()
+  --     end
+  -- }
 
 end)
