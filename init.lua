@@ -16,6 +16,7 @@ require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    -- Fuzzy file/word finder
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
@@ -24,14 +25,19 @@ require('packer').startup(function(use)
     use 'EdenEast/nightfox.nvim'
     use 'navarasu/onedark.nvim'
 
+    -- Syntax highlighting
     use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
 
+    -- Quick file switching
     use 'theprimeagen/harpoon'
 
+    -- undo graph
     use 'mbbill/undotree'
 
+    -- Git integration
     use 'tpope/vim-fugitive'
 
+    -- LSP Manager
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
@@ -55,11 +61,19 @@ require('packer').startup(function(use)
         }
     }
 
+    use { 'hrsh7th/nvim-cmp' }
+
+    -- Statusbar
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 
-    use 'tpope/vim-sleuth' -- "Detect tabstop and shiftwidth automatically
+    use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
     use 'norcalli/nvim-colorizer.lua' -- Colourises colour codes
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions or lines
+
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
 
     if is_bootstrap then
         require('packer').sync()
@@ -108,6 +122,10 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 vim.opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 vim.opt.wrap = false
 
